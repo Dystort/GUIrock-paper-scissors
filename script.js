@@ -5,7 +5,7 @@ let gameResult;
 let finalScore = 0;
 
 for (i=0; i < rounds; i++){
-    playerSelection = window.prompt("Choose your weapon: rock, paper, or scissors");
+    playerSelection = getInput();
     computerSelection = computerPlay();
     gameResult = playRound(playerSelection, computerSelection);
     console.log(gameResult);
@@ -30,8 +30,18 @@ showResults(finalScore);
 
 
 
+function getInput() { //Enables case-insensitity for user input
+    let a;
+    a = window.prompt("Choose your weapon: rock, paper, or scissors");
+    a = a.toLowerCase();
+    if (a == "rock" || a == "paper" || a == "scissors"){
+        return a;
+    }
+    else{
+        return fail;
+    }
 
-
+}
 
 function computerPlay(){   //return the string "rock", "paper", or "scissors" randomly
     let a = Math.random();
@@ -94,7 +104,7 @@ function playRound(play, comp){ //compare user input with computer selection to 
             }
         }
 }
-function showResults(a){
+function showResults(a){ //describes results of set of matches
 
     switch(a){
         case 0:
