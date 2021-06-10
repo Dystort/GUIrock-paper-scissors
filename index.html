@@ -4,11 +4,50 @@
         <meta charset="utf-8">
         <title>Rock Paper Scissors</title>
         <link rel="stylesheet" href="main.css">
-        <script src="script.js"></script>
     </head>
+    
     <body>
-        <p>
-            This is my Rock Paper Scissors page.
-        </p>
+        <h1 class="header">Rock Paper Scissors Mayhem</h1>
+        <div class="page">
+            <div class="page_container">
+                <div class="body_container">
+                    <div class="buttons_container columns">
+                        <h2 class="buttons_banner">CHOOSE YOUR WEAPON</h2>
+                        <ul class="buttons_array">
+                            <button id="rock">Rock</button>
+                            <button id="paper">Paper</button>
+                            <button id="scissors">Scissors</button>
+                        </ul>
+                    </div>
+                    <div class="battle_container columns">
+                        <h2 class="results_banner">BATTLES</h2>                        
+                        <div class="battle_results" id="battles">
+                        </div>
+                    </div>
+                    <div class="match_results_container columns">
+                        <h2>GLORIOUS OUTCOME</h2>
+                        <div class="win_loss_container">
+                            <div class="win_loss">
+                                <h3>Player</h3>
+                            </div>
+                            <div class="win_loss">
+                                <h3>Adversary</h3>
+                        
+                            </div>
+                            <div class="win_loss counter">
+                                <p id="player_victories">0</p>
+
+                            </div>
+                            <div class="win_loss counter">
+                                <p id="computer_victories">0</p>
+                            </div>
+                        <div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </body>
+    <script src="script.js"></script>
+
 </html>

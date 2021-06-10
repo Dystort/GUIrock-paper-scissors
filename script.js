@@ -1,47 +1,21 @@
-let playerSelection; 
-let computerSelection;
-const rounds = 5;
-let gameResult;
-let finalScore = 0;
+let playerVictoriesCount = 0;
+let playerVictoriesCounter = document.querySelector('#player_victories');
 
-for (i=0; i < rounds; i++){
-    playerSelection = getInput();
-    computerSelection = computerPlay();
-    gameResult = playRound(playerSelection, computerSelection);
-    console.log(gameResult);
-    
-    switch (gameResult){
-        case "It's a tie!":
-            i--;
-            break;
+let computerVictoriesCount = 0;
+let computerVictoriesCounter = document.querySelector('#computer_victories');
 
-        case "You win!*":
-            finalScore++;
-            break;
-        
-        case "You lose!*":
-            break;
-    }
+const btnRock = document.querySelector('#rock');
+btnRock.addEventListener('click', () => {playRound("rock")});
 
+const btnPaper = document.querySelector('#paper');
+btnPaper.addEventListener('click', () => {playRound("paper")});
 
-}
-
-showResults(finalScore);
+const btnScissors = document.querySelector('#scissors');
+btnScissors.addEventListener('click', () => {playRound("scissors")});
 
 
 
-function getInput() { //Enables case-insensitity for user input
-    let a;
-    a = window.prompt("Choose your weapon: rock, paper, or scissors");
-    a = a.toLowerCase();
-    if (a == "rock" || a == "paper" || a == "scissors"){
-        return a;
-    }
-    else{
-        return fail;
-    }
 
-}
 
 function computerPlay(){   //return the string "rock", "paper", or "scissors" randomly
     let a = Math.random();
@@ -56,78 +30,86 @@ function computerPlay(){   //return the string "rock", "paper", or "scissors" ra
     }
 }
 
-function playRound(play, comp){ //compare user input with computer selection to determine victor
+function playRound(play){ //compare user input with computer selection to determine victor
+        
+
+        let comp = computerPlay();
+        const container = document.querySelector('#battles');
+        const battleresult = document.createElement('p');
+
 
         if (play == "rock"){
             if (comp == "rock"){
-                return "It's a tie!";
+                battleresult.textContent = "Tie!";
+                container.appendChild(battleresult);
+                
             }
 
             else if (comp == "paper"){
-                return "You lose! Paper beats Rock";
+                battleresult.textContent = "Paper beats Rock, you lose!";
+                container.appendChild(battleresult);
+                computerVictoriesCount++;
+                computerVictoriesCounter.textContent = computerVictoriesCount;
+
+
             }
 
             else if(comp == "scissors"){
-                finalScore++;
-                return "You win! Rock beats Scissors ";
+                battleresult.textContent = "Rock Beats Paper, you win!";
+                container.appendChild(battleresult);
+                playerVictoriesCount++;
+                playerVictoriesCounter.textContent = playerVictoriesCount;
+
             }
         }
         
         if (play == "paper"){
             if (comp == "rock"){
-                finalScore++;
-                return "You win! Paper beats Rock";
+                battleresult.textContent = "Paper beats Rock, you win!";
+                container.appendChild(battleresult);
+                playerVictoriesCount++;
+                playerVictoriesCounter.textContent = playerVictoriesCount;
             }
 
             else if (comp == "paper"){
-                return "It's a tie!";
+                battleresult.textContent = "Tie!";
+                container.appendChild(battleresult);
             }
 
             else if(comp == "scissors"){
-                return "You lose! Scissors beat Paper";
+                battleresult.textContent = "Scissors beat Paper, you lose!";
+                container.appendChild(battleresult);
+                computerVictoriesCount++;
+                computerVictoriesCounter.textContent = computerVictoriesCount;
             }
         }
         
 
         if (play == "scissors"){
             if (comp == "rock"){
-                return "You lose! Rock beats Scissors";
+                battleresult.textContent = "Rock beats Scissors, you lose!";
+                container.appendChild(battleresult);
+                computerVictoriesCount++;
+                computerVictoriesCounter.textContent = computerVictoriesCount;
             }
 
             else if (comp == "paper"){
-                finalScore++;
-                return "You win! Scissors beats paper";
+                battleresult.textContent = "Scissors beat Paper, you win!";
+                container.appendChild(battleresult);
+                playerVictoriesCount++;
+                playerVictoriesCounter.textContent = playerVictoriesCount;
             }
 
             else if(comp == "scissors"){
-                return "It's a tie!";
+                battleresult.textContent = "Tie!";
+                container.appendChild(battleresult);
             }
         }
+        if(playerVictoriesCount >= 3){
+            alert("YOU ARE VICTORIOUS!");
+        }
+        else if(computerVictoriesCount >= 3){
+            alert("YOU HAVE BEEN DEFEATED!");
+        }
 }
-function showResults(a){ //describes results of set of matches
 
-    switch(a){
-        case 0:
-            console.log("You won 0 matches. Better luck next time!");
-            break;
-
-        case 1:
-            console.log("You won 1 match. Try again!");
-            break;
-
-        case 2:  
-            console.log("You won 2 matches. So close!");
-            break;
-
-        case 3:  
-            console.log("You won 3 matches. Victory!");
-            break;
-
-        case 4:  
-            console.log("You won 4 matches. Decisive victory!");
-            break;
-
-        case 5: 
-            console.log("You won 5 matches. Perfect record!");
-    }
-}
