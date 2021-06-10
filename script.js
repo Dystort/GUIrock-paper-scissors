@@ -16,7 +16,7 @@ btnScissors.addEventListener('click', () => {playRound("scissors")});
 
 
 
-
+//test
 function computerPlay(){   //return the string "rock", "paper", or "scissors" randomly
     let a = Math.random();
     if (a <= .33){
